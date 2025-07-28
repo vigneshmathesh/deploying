@@ -35,7 +35,7 @@ resource "aws_security_group" "flask_sg" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 }
-resource "aws_instance" "flask_app" {
+resource "aws_instance" "flask_sg" {
   ami                         = "ami-020cba7c55df1f615" # Ubuntu 20.04
   instance_type               = "t2.micro"
   key_name                    = aws_key_pair.scale.key_name
