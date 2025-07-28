@@ -35,12 +35,12 @@ resource "aws_security_group" "flask_sg" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 }
-
 resource "aws_instance" "flask_app" {
-  ami           = "ami-020cba7c55df1f615" # Ubuntu 20.04
-  instance_type = "t2.micro"
-  key_name      = aws_key_pair.scale.key_name
-  security_groups = [aws_security_group.flask_sg.name]
+  ami                         = "ami-020cba7c55df1f615" # Ubuntu 20.04
+  instance_type               = "t2.micro"
+  key_name                    = aws_key_pair.scale.key_name
+  subnet_id                   = "subnet-06978bf9d73ff38f7"
+  vpc_security_group_ids      = [aws_security_group.flask_sg.id]
 
   user_data = <<-EOF
               #!/bin/bash
