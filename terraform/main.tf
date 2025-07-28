@@ -36,7 +36,7 @@ resource "aws_instance" "flask_app" {
   ami           = "ami-020cba7c55df1f615" # Ubuntu 20.04
   instance_type = "t2.micro"
   key_name      = aws_key_pair.scale.key_name
-  security_groups = [aws_security_group.flask_sg.name]
+  security_groups = [aws_security_group.launch-wizard-4.name]
 
   user_data = <<-EOF
               #!/bin/bash
