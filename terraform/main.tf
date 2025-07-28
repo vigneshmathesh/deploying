@@ -4,11 +4,11 @@ provider "aws" {
 
 resource "aws_key_pair" "scale" {
   key_name   = "scale"
-  public_key = file("~/.ssh/id_rsa.pub")
+  public_key = file("${path.module}/id_rsa.pub")
 }
 
-resource "aws_security_group" "launch-wizard-4" {
-  name        = "launch-wizard-4"
+resource "aws_security_group" "flask_sg" {
+  name = "launch-wizard-4"
 
   ingress {
     from_port   = 5000
@@ -33,10 +33,10 @@ resource "aws_security_group" "launch-wizard-4" {
 }
 
 resource "aws_instance" "flask_app" {
-  ami           = "ami-020cba7c55df1f615" # Ubuntu 20.04 (us-east-1)
+  ami           = "ami-020cba7c55df1f615" # Ubuntu 20.04
   instance_type = "t2.micro"
-  key_name      = aws_key_pair.deployer.scale
-  security_groups = [aws_security_group.launch-wizard-4]
+  key_name      = aws_key_pair.scale.key_name
+  security_groups = [aws_security_group.flask_sg.name]
 
   user_data = <<-EOF
               #!/bin/bash
