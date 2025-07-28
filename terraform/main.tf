@@ -7,7 +7,7 @@ resource "aws_key_pair" "scale" {
   public_key = file("${path.module}/id_rsa.pub")
 }
 
-resource "aws_security_group" "flask_sg" {
+resource "aws_security_group" "launch-wizard-4" {
   name = "launch-wizard-4"
 
   ingress {
